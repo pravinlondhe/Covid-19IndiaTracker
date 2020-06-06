@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_state_wise"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/four_dp"
+    app:cardCornerRadius="@dimen/eight_dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/four_dp">
+
+        <TextView
+            android:id="@+id/tv_district"
+            style="@style/state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Maharashtra" />
+
+        <TextView
+            android:id="@+id/tv_today_confirmed"
+            style="@style/confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_district"
+            tools:text="@string/today_confirmed" />
+
+        <TextView
+            android:id="@+id/tv_total_confirmed"
+            style="@style/confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_today_confirmed"
+            app:layout_constraintTop_toBottomOf="@id/tv_district"
+            tools:text="@string/total_confirmed" />
+
+        <TextView
+            android:id="@+id/tv_today_recovered"
+            style="@style/recovered"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_today_confirmed"
+            tools:text="@string/today_recovered" />
+
+        <TextView
+            android:id="@+id/tv_total_recovered"
+            style="@style/recovered"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_dp"
+            app:layout_constraintStart_toStartOf="@id/tv_total_confirmed"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_confirmed"
+            tools:text="@string/total_recovered" />
+
+        <TextView
+            android:id="@+id/tv_today_death"
+            style="@style/death"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_today_recovered"
+            tools:text="@string/today_deaths" />
+
+        <TextView
+            android:id="@+id/tv_total_death"
+            style="@style/death"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_dp"
+            app:layout_constraintStart_toStartOf="@id/tv_total_recovered"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_recovered"
+            tools:text="@string/total_deaths" />
+
+        <TextView
+            android:id="@+id/tv_total_active"
+            style="@style/active"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_today_death"
+            tools:text="@string/total_active" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

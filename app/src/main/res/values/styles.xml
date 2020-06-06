@@ -1,0 +1,55 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="fontFamily">@font/fira_sans</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">#EEEEEE</item>
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <style name="totalCount" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="textAllCaps">true</item>
+        <item name="singleLine">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/eight_dp</item>
+    </style>
+
+    <style name="state" parent="totalCount">
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/four_dp</item>
+    </style>
+
+    <style name="confirmed" parent="totalCount">
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/four_dp</item>
+        <item name="android:textColor">@color/colorDarkRed</item>
+    </style>
+
+    <style name="recovered" parent="confirmed">
+        <item name="android:textColor">@color/colorDarkGreen</item>
+    </style>
+
+    <style name="death" parent="confirmed">
+        <item name="android:textColor">@color/colorDarkGrey</item>
+    </style>
+
+    <style name="active" parent="confirmed">
+        <item name="android:textColor">@color/colorDarkBlue</item>
+    </style>
+</resources>

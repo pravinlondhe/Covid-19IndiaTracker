@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_state_wise"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/four_dp"
+    app:cardCornerRadius="@dimen/eight_dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/four_dp">
+
+        <TextView
+            android:id="@+id/tv_district"
+            style="@style/state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kolhapur" />
+
+        <TextView
+            android:id="@+id/tv_today_confirmed"
+            style="@style/confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_district"
+            tools:text="@string/today_confirmed" />
+
+        <TextView
+            android:id="@+id/tv_total_confirmed"
+            style="@style/confirmed"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_today_confirmed"
+            app:layout_constraintTop_toBottomOf="@id/tv_district"
+            tools:text="@string/total_confirmed" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

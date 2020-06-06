@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Covid-19 India Tracker</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="today_confirmed">Today\'s confirmed : %s </string>
+    <string name="total_confirmed">Total confirmed : %s </string>
+    <string name="today_recovered">Today\'s recovered : %s </string>
+    <string name="total_recovered">Total Recovered : %s </string>
+    <string name="today_deaths">Today\'s Deaths : %s </string>
+    <string name="total_deaths">Total Deaths : %s </string>
+    <string name="total_active">Total Actives : %s </string>
+    <string name="total_tests">Total tests : %s </string>
+    <string name="last_updated_time">%s IST.</string>
+</resources>
