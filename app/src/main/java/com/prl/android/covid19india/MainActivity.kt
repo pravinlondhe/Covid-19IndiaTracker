@@ -1,6 +1,5 @@
 package com.prl.android.covid19india
 
-import android.graphics.ColorFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setMaterialTitle(title: String) {
-       toolbar.title = title
+        toolbar.title = title
     }
 
 }
