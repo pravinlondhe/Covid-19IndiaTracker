@@ -12,3 +12,12 @@
 /captures
 .externalNativeBuild
 .cxx
+/.idea/.name
+/.idea/sonarlint/*
+/.idea/checkstyle-idea.xml
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/gradle.xml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/codeStyles/Project.xml
+/.idea/vcs.xml

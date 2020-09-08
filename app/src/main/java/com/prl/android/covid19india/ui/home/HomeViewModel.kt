@@ -1,27 +1,31 @@
 package com.prl.android.covid19india.ui.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.prl.android.covid19india.data.Covid19ApiService
+import androidx.lifecycle.viewModelScope
 import com.prl.android.covid19india.data.model.country.Statewise
+import com.prl.android.covid19india.data.network.Covid19ApiService
+import com.prl.android.covid19india.data.network.DataBound
+import com.prl.android.covid19india.data.network.Loading
+import com.prl.android.covid19india.data.network.Success
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
     private val covid19ApiService: Covid19ApiService = Covid19ApiService()
-    var covid19TotalCountData : MutableLiveData<Statewise> = MutableLiveData()
-     private set
-    var covid19StateWiseData : MutableLiveData<List<Statewise>> = MutableLiveData()
+    var covid19TotalCountData: MutableLiveData<DataBound<Statewise>> = MutableLiveData()
+        private set
+    var covid19StateWiseData: MutableLiveData<DataBound<List<Statewise>>> = MutableLiveData()
         private set
 
-    fun getData(){
-        GlobalScope.launch(Dispatchers.IO){
-           val response = covid19ApiService.getCovid19Data().await()
-            covid19TotalCountData.postValue(response.statewise.filter { it.stateCode == "TT" }[0])
-            covid19StateWiseData.postValue(response.statewise.filter { it.stateCode != "TT" })
+    fun getCovid19AllData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            covid19TotalCountData.postValue(Loading())
+            covid19StateWiseData.postValue(Loading())
+            val response = covid19ApiService.getCovid19Data().await()
+            covid19TotalCountData.postValue(Success<Statewise>(response.statewise.filter { it.stateCode == "TT" }[0]))
+            covid19StateWiseData.postValue(Success<List<Statewise>>(response.statewise.filter { it.stateCode != "TT" }))
         }
     }
 }

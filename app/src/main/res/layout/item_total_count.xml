@@ -2,10 +2,12 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/four_dp"
-    app:cardCornerRadius="@dimen/eight_dp">
+    android:layout_margin="1dp"
+    app:cardCornerRadius="300dp"
+    tools:background="@drawable/red_gradient">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_total_count"
@@ -27,7 +29,6 @@
             style="@style/totalCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/fira_sans"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_header"
@@ -38,7 +39,6 @@
             style="@style/totalCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_today_count"

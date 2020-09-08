@@ -1,4 +1,4 @@
-package com.prl.android.covid19india.data
+package com.prl.android.covid19india.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.prl.android.covid19india.data.model.country.Covid19DataResponse
@@ -6,7 +6,6 @@ import com.prl.android.covid19india.data.model.statewise.StateCovid19DataRespons
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -18,9 +17,9 @@ interface Covid19ApiService {
     @GET("v2/state_district_wise.json")
     fun getStateWiseData(): Deferred<StateCovid19DataResponse>
 
-    companion object{
-        operator fun invoke() : Covid19ApiService {
-            val interceptor : Interceptor = Interceptor { chain ->
+    companion object {
+        operator fun invoke(): Covid19ApiService {
+            val interceptor: Interceptor = Interceptor { chain ->
                 println(chain.request().url().toString())
                 println(chain.request().body().toString())
                 println(chain.request().headers().toString())
