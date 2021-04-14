@@ -5,13 +5,13 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="1dp"
-    app:cardCornerRadius="300dp"
+    android:layout_margin="8dp"
     tools:background="@drawable/red_gradient">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_total_count"
         android:layout_width="match_parent"
+        android:paddingBottom="8dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -25,23 +25,49 @@
             tools:text="HEADER" />
 
         <TextView
-            android:id="@+id/tv_today_count"
+            android:id="@+id/tv_today_count_txt"
             style="@style/totalCount"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:text="Today's : "
+            app:layout_constraintEnd_toStartOf="@id/tv_today_count"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_header"
             tools:text="[+100]" />
 
         <TextView
+            android:id="@+id/tv_today_count"
+            style="@style/totalCount"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/tv_total_count_txt"
+            app:layout_constraintStart_toEndOf="@id/tv_today_count_txt"
+            app:layout_constraintTop_toBottomOf="@id/tv_header"
+            tools:text="[+100]" />
+
+        <TextView
+            android:id="@+id/tv_total_count_txt"
+            style="@style/totalCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Total : "
+            app:layout_constraintEnd_toStartOf="@id/tv_total_count"
+            app:layout_constraintStart_toEndOf="@id/tv_today_count"
+            app:layout_constraintTop_toTopOf="@id/tv_today_count"
+            tools:text="1000" />
+
+        <TextView
             android:id="@+id/tv_total_count"
             style="@style/totalCount"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_today_count"
+            app:layout_constraintStart_toEndOf="@id/tv_total_count_txt"
+            app:layout_constraintTop_toTopOf="@id/tv_today_count"
             tools:text="1000" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

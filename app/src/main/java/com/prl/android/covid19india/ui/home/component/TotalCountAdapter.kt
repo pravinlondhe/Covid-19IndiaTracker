@@ -56,6 +56,7 @@ class TotalCountAdapter(private var data: Statewise?) :
             with(todayCountTextView) {
                 text = when (position) {
                     0 -> data?.deltaConfirmed ?: ""
+                    1 -> data?.active ?: ""
                     2 -> data?.deltaRecovered ?: ""
                     3 -> data?.deltaDeaths ?: ""
                     else -> ""

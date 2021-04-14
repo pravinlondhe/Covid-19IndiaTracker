@@ -1,28 +1,40 @@
 package com.prl.android.covid19india.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.prl.android.covid19india.R
+import com.prl.android.covid19india.data.localdatabase.Covid19IndiaDb
 import com.prl.android.covid19india.data.model.country.Statewise
 import com.prl.android.covid19india.data.network.Loading
 import com.prl.android.covid19india.data.network.Success
+import com.prl.android.covid19india.databinding.FragmentHomeBinding
 import com.prl.android.covid19india.ui.home.component.StateWiseAdapter
 import com.prl.android.covid19india.ui.home.component.TotalCountAdapter
 import com.prl.android.covid19india.ui.home.details.StateDetailFragment
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
-    private val homeViewModel: HomeViewModel by lazy {
-        ViewModelProvider(this).get(HomeViewModel::class.java)
+    private lateinit var binding: FragmentHomeBinding
+
+    private lateinit var homeViewModel: HomeViewModel
+
+    class HomeViewModelFactory(private val context: Context) :
+        ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            val db =
+                Room.databaseBuilder(context, Covid19IndiaDb::class.java, "covid19IndiaDb").build()
+            return HomeViewModel.createAndAttach(db) as T
+        }
     }
 
     private val adapterTotalCount: TotalCountAdapter by lazy { TotalCountAdapter(null) }
@@ -36,18 +48,21 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+    ): View {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(rvTotalCount) {
-            layoutManager = GridLayoutManager(activity, 4)
+        homeViewModel = HomeViewModelFactory(requireContext()).create(HomeViewModel::class.java)
+        with(binding.rvTotalCount) {
+//            layoutManager = GridLayoutManager(activity, 4)
+            layoutManager = LinearLayoutManager(activity)
             setHasFixedSize(true)
             adapter = adapterTotalCount
         }
-        with(rvStateWise) {
+        with(binding.rvStateWise) {
             layoutManager = LinearLayoutManager(activity)
             setHasFixedSize(true)
             adapter = adapterStateWise
@@ -64,20 +79,21 @@ class HomeFragment : Fragment() {
             Observer { data ->
                 when (data) {
                     is Loading -> {
-                        pbHome
-
-                            .visibility = View.VISIBLE
+                        binding.pbHome.visibility = View.VISIBLE
                     }
                     is Success<*> -> {
-                        pbHome.visibility = View.GONE
+                        binding.pbHome.visibility = View.GONE
                         adapterTotalCount.updateData(data.data as Statewise)
-                        tvLastUpdated.text = getString(
+                        binding.tvLastUpdated.text = getString(
                             R.string.last_updated_time,
                             data.data.lastUpdatedTime
                         )
                     }
                     is Error -> {
-                        pbHome.visibility = View.GONE
+                        binding.pbHome.visibility = View.GONE
+                    }
+                    else -> {
+                        //Nothing to do
                     }
                 }
             })
@@ -86,14 +102,14 @@ class HomeFragment : Fragment() {
             Observer { data ->
                 when (data) {
                     is Loading -> {
-                        pbHome.visibility = View.VISIBLE
+                        binding.pbHome.visibility = View.VISIBLE
                     }
                     is Success<*> -> {
-                        pbHome.visibility = View.GONE
+                        binding.pbHome.visibility = View.GONE
                         adapterStateWise.updateData(data.data as List<Statewise>)
                     }
                     is Error -> {
-                        pbHome.visibility = View.GONE
+                        binding.pbHome.visibility = View.GONE
                     }
                 }
             })

@@ -2,31 +2,36 @@ package com.prl.android.covid19india.data.model.country
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class Covid19DataResponse(
     @SerializedName("cases_time_series")
-    val casesTimeSeries: List<CasesTimeSeries>,
+    val dailyCasesTimeSeries: List<DailyCases>,
     val statewise: List<Statewise>,
     val tested: List<Tested>
 )
 
-data class CasesTimeSeries(
+@Entity
+data class DailyCases(
     @SerializedName("dailyconfirmed")
-    val dailyConfirmed: String,
+    val dailyConfirmed: Long,
     @SerializedName("dailydeceased")
-    val dailyDeceased: String,
+    val dailyDeceased: Long,
     @SerializedName("dailyrecovered")
-    val dailyRecovered: String,
+    val dailyRecovered: Long,
+    @PrimaryKey
     val date: String,
     @SerializedName("totalconfirmed")
-    val totalConfirmed: String,
+    val totalConfirmed: Long,
     @SerializedName("totaldeceased")
-    val totalDeceased: String,
+    val totalDeceased: Long,
     @SerializedName("totalrecovered")
-    val totalRecovered: String
+    val totalRecovered: Long
 )
 
+@Entity
 data class Statewise(
     val active: String?,
     val confirmed: String?,
@@ -41,6 +46,7 @@ data class Statewise(
     val lastUpdatedTime: String?,
     val recovered: String?,
     val state: String?,
+    @PrimaryKey
     @SerializedName("statecode")
     val stateCode: String?,
     @SerializedName("statenotes")

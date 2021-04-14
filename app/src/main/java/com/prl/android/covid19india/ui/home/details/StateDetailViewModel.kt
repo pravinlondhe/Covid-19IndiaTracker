@@ -15,7 +15,7 @@ class StateDetailViewModel : ViewModel() {
 
     fun setState(state: String) {
         GlobalScope.launch(Dispatchers.IO) {
-            covid19StateDetail = Covid19ApiService().getStateWiseData().await()
+            covid19StateDetail = Covid19ApiService().getStateWiseDataAsync().await()
             val states = covid19StateDetail.filter {
                 it.state.equals(state, true)
             }
